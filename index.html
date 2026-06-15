@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>山仲初美 | 文芸サイト</title>
+  <meta name="description" content="山仲初美の文芸記事・随筆・批評を掲載する個人ホームページ" />
+  <style>
+    :root {
+      --bg: #f6f3ee;
+      --paper: #fffdfa;
+      --ink: #1f1a17;
+      --sub: #5e534b;
+      --line: #d8cfc4;
+      --accent: #6a3f2b;
+      --accent-soft: #f0e3da;
+      --max: 1080px;
+      --shadow: 0 10px 30px rgba(31, 26, 23, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.8;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(246, 243, 238, 0.88);
+      border-bottom: 1px solid rgba(216, 207, 196, 0.7);
+    }
+
+    .site-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 72px;
+    }
+
+    .site-title {
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      font-size: 0.95rem;
+      color: var(--sub);
+    }
+
+    .nav a {
+      padding: 0.25rem 0;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s ease;
+    }
+    .nav a:hover { border-color: var(--accent); }
+
+    .hero { padding: 5rem 0 3rem; }
+
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.85fr;
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .hero__main, .hero__side, .about-box, .note-box, .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: 24px;
+    }
+
+    .hero__main, .hero__side { padding: 2rem; }
+    .about-box, .note-box { padding: 1.5rem; }
+    .card { padding: 1.2rem; }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.4;
+      margin: 0 0 1rem;
+      font-weight: 600;
+    }
+
+    h1 { font-size: clamp(2rem, 5vw, 3.4rem); }
+    h2 { font-size: clamp(1.4rem, 3vw, 2rem); }
+    h3 { font-size: 1.15rem; }
+
+    p {
+      margin: 0 0 1rem;
+      color: var(--sub);
+    }
+
+    .lead {
+      font-size: 1.03rem;
+      color: var(--ink);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.2rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.95rem;
+      transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease;
+    }
+
+    .button:hover { transform: translateY(-1px); opacity: 0.95; }
+    .button--ghost { background: transparent; color: var(--accent); }
+
+    .hero-note {
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--line);
+      font-size: 0.95rem;
+    }
+
+    .profile-list {
+      margin: 1.2rem 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .profile-list li {
+      padding-bottom: 0.8rem;
+      border-bottom: 1px dashed var(--line);
+      color: var(--sub);
+    }
+
+    .section { padding: 1.5rem 0 3rem; }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      overflow: hidden;
+    }
+
+    .tag {
+      display: inline-flex;
+      width: fit-content;
+      font-size: 0.8rem;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+    }
+
+    .meta { font-size: 0.88rem; color: var(--sub); }
+    .card p { font-size: 0.95rem; margin-bottom: 0; }
+
+    .card a.inline {
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-top: auto;
+    }
+
+    .card-thumb {
+      aspect-ratio: 16 / 9;
+      width: calc(100% + 2.4rem);
+      margin: -1.2rem -1.2rem 0;
+      object-fit: cover;
+      border-bottom: 1px solid var(--line);
+      background: #ece6de;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .footer {
+      padding: 2rem 0 4rem;
+      color: var(--sub);
+      font-size: 0.92rem;
+    }
+
+    .footer-inner {
+      border-top: 1px solid var(--line);
+      padding-top: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    code.kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.88rem;
+      background: #efe7dd;
+      padding: 0.18rem 0.45rem;
+      border-radius: 6px;
+      color: #5b3a28;
+    }
+
+    @media (max-width: 900px) {
+      .hero__grid, .cards, .two-col { grid-template-columns: 1fr; }
+      .site-header__inner {
+        min-height: auto;
+        padding: 0.85rem 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .nav { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="#top" class="site-title">山仲初美 / 文芸サイト</a>
+      <nav class="nav" aria-label="主要メニュー">
+        <a href="#latest-note">note最新記事</a>
+        <a href="#works">代表記事</a>
+        <a href="#about">プロフィール</a>
+        <a href="#guide">公開手順</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__main">
+          <div class="eyebrow">Personal Literary Website</div>
+          <h1>山仲初美の文章をまとめるための個人ホームページ</h1>
+          <p class="lead">
+            文芸記事、随筆、批評、日記的断章を置くための個人サイトです。note を外部プラットフォームとして使いながら、
+            ここを自分の拠点として運用することを想定しています。
+          </p>
+          <p>
+            このページは GitHub Pages で無料公開できる静的サイトです。まずはプロフィール、代表記事、note の最新記事をまとめ、
+            そこから少しずつ個別記事ページを増やしていく形に向いています。
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#latest-note">note最新記事を見る</a>
+            <a class="button button--ghost" href="https://note.com/adored__you7" target="_blank" rel="noopener noreferrer">noteへ行く</a>
+          </div>
+          <div class="hero-note">
+            <strong>今の構成:</strong> RSS から拾える note 記事をもとに、最新記事欄を手作業で整形して入れています。
+            最初はこれで十分です。自動更新は後から GitHub Actions で足せます。
+          </div>
+        </div>
+
+        <aside class="hero__side">
+          <h2>このサイトの役割</h2>
+          <ul class="profile-list">
+            <li>自分の文章の拠点を持つ</li>
+            <li>note の新着記事を一覧で見せる</li>
+            <li>代表作を自分の基準で並べる</li>
+            <li>あとから個別記事ページを増やせる</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="latest-note">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Latest from note</div>
+            <h2>note 最新記事</h2>
+          </div>
+          <p><a href="https://note.com/adored__you7" target="_blank" rel="noopener noreferrer">@adored__you7 を見る</a></p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <img class="card-thumb" src="https://assets.st-note.com/production/uploads/images/283022326/rectangle_large_type_2_5a37efa49f35d17b24fb078d61b03266.jpg?width=800" alt="俺の屍を超えていけ サムネイル" />
+            <span class="tag">note</span>
+            <div class="meta">2026.06.06</div>
+            <h3>俺の屍を超えていけ</h3>
+            <p>ばいきんまんを応援していた記憶から始まり、逆張り、善悪、社会適応、平凡さ、配慮と新世界まで飛躍する長い独白。</p>
+            <a class="inline" href="https://note.com/adored__you7/n/n3a2231de5f65" target="_blank" rel="noopener noreferrer">noteで読む</a>
+          </article>
+
+          <article class="card">
+            <img class="card-thumb" src="https://assets.st-note.com/production/uploads/images/279110500/rectangle_large_type_2_1db91397b48f211e44ebfad101a10a3b.png?width=800" alt="「理想の教育」←アホかと😅 サムネイル" />
+            <span class="tag">note</span>
+            <div class="meta">2026.05.24</div>
+            <h3>「理想の教育」←アホかと😅</h3>
+            <p>「理想の教育」を夢に出てくる恋人になぞらえながら、理想という語の虚しさと教育を語ること自体への違和感を述べる文章。</p>
+            <a class="inline" href="https://note.com/adored__you7/n/n512c4f955bae" target="_blank" rel="noopener noreferrer">noteで読む</a>
+          </article>
+
+          <article class="card">
+            <img class="card-thumb" src="https://assets.st-note.com/production/uploads/images/269866780/rectangle_large_type_2_12a4e1bde6de0a109906ca9e0594be9b.jpg?width=800" alt="やはり普通は存在しなかった サムネイル" />
+            <span class="tag">note</span>
+            <div class="meta">2026.04.24</div>
+            <h3>やはり普通は存在しなかった</h3>
+            <p>「普通」の人生像をめぐる独白。地方出身、家族、祖母の死、東京への距離感を通して、自分の歩みと平均像のずれを見つめる。</p>
+            <a class="inline" href="https://note.com/adored__you7/n/n2c8dcab99cc6" target="_blank" rel="noopener noreferrer">noteで読む</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="works">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Selected Works</div>
+            <h2>代表記事</h2>
+          </div>
+          <p>ここは自分で選んだ代表作を並べる場所です。</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <span class="tag">批評 / 思考</span>
+            <div class="meta">2026.04.11</div>
+            <h3>AIはNTRで勃起できない</h3>
+            <p>AI創作と経験の問題を、かなり個人的でねじれた問いから考える文章。サイト上の代表作に向いています。</p>
+            <a class="inline" href="https://note.com/adored__you7/n/na7d81eec060e" target="_blank" rel="noopener noreferrer">noteで読む</a>
+          </article>
+
+          <article class="card">
+            <span class="tag">随筆</span>
+            <div class="meta">2026.03.03</div>
+            <h3>努力をしたことがないし、これからもすることがないんだろうな。</h3>
+            <p>生活、体調、就活、不安が一続きになって流れる文章。自己記述としての強さがあります。</p>
+            <a class="inline" href="https://note.com/adored__you7/n/n8f71b84a01f1" target="_blank" rel="noopener noreferrer">noteで読む</a>
+          </article>
+
+          <article class="card">
+            <span class="tag">長文</span>
+            <div class="meta">2026.03.01</div>
+            <h3>第一志望論</h3>
+            <p>「第一志望」という語に含まれる自己欺瞞や、手の届く範囲で欲望を再編成することへの違和感を掘る文章。</p>
+            <a class="inline" href="https://note.com/adored__you7/n/n932c01d76166" target="_blank" rel="noopener noreferrer">noteで読む</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container two-col">
+        <div class="about-box">
+          <div class="eyebrow">About</div>
+          <h2>プロフィール</h2>
+          <p>
+            大学院生。文芸記事、批評、日記的な断章、思考のメモを書くための個人サイト。
+            note に掲載している記事への導線を持ちながら、自分の文章を自分の場所として整理することを目的としています。
+          </p>
+          <p>
+            ここは外部プラットフォームの補助ではなく、自分の拠点として使うことを想定しています。
+          </p>
+        </div>
+
+        <div class="note-box">
+          <div class="eyebrow">note</div>
+          <h2>note への導線</h2>
+          <p>
+            note 本体は外部公開の場として使い、このサイトでは新着案内と代表作の整理を行います。
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="https://note.com/adored__you7" target="_blank" rel="noopener noreferrer">note トップ</a>
+            <a class="button button--ghost" href="https://note.com/adored__you7/rss" target="_blank" rel="noopener noreferrer">RSS を見る</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="guide">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Guide</div>
+            <h2>実際にホームページにする手順</h2>
+          </div>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <h3>1. GitHub アカウントを作る / ログインする</h3>
+            <p>まだなら GitHub のアカウントを作ります。すでにあるならそのままで大丈夫です。</p>
+          </div>
+          <div class="card">
+            <h3>2. 公開リポジトリを作る</h3>
+            <p><code class="kbd">literary-homepage</code> のような名前で Public リポジトリを1つ作ります。</p>
+          </div>
+          <div class="card">
+            <h3>3. このHTMLを <code class="kbd">index.html</code> で置く</h3>
+            <p>このコード全体を <code class="kbd">index.html</code> という名前で保存し、GitHub にアップロードします。</p>
+          </div>
+          <div class="card">
+            <h3>4. GitHub Pages を有効化する</h3>
+            <p>リポジトリの <code class="kbd">Settings → Pages</code> を開き、Source を <code class="kbd">Deploy from a branch</code>、Branch を <code class="kbd">main</code> / <code class="kbd">/root</code> に設定します。</p>
+          </div>
+          <div class="card">
+            <h3>5. 公開URLを確認する</h3>
+            <p>数分すると <code class="kbd">https://ユーザー名.github.io/リポジトリ名/</code> で見られるようになります。</p>
+          </div>
+          <div class="card">
+            <h3>6. 記事を増やす</h3>
+            <p>まずはトップページだけで十分です。その後、個別記事ページや記事一覧ページを足していけば足ります。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 山仲初美</div>
+      <div>Built for GitHub Pages</div>
+    </div>
+  </footer>
+</body>
+</html>
