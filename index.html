@@ -28,7 +28,7 @@
 
     body {
       margin: 0;
-      font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+      font-family: "Hiragino Maru Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
       background:
         radial-gradient(circle at top left, rgba(255, 120, 210, 0.15), transparent 22%),
         radial-gradient(circle at top right, rgba(94, 203, 255, 0.18), transparent 26%),
@@ -101,9 +101,7 @@
     .hero__main,
     .hero__side,
     .about-box,
-    .note-box,
-    .card,
-    .guide-panel {
+    .card {
       background: var(--paper);
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
@@ -112,7 +110,7 @@
     }
 
     .hero__main, .hero__side { padding: 2.25rem; }
-    .about-box, .note-box, .guide-panel { padding: 1.7rem; }
+    .about-box { padding: 1.7rem; }
     .card { padding: 1.25rem; }
 
     .eyebrow {
@@ -261,27 +259,6 @@
       background: #ece6de;
     }
 
-    .two-col {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 1rem;
-    }
-
-    .guide-panel {
-      display: grid;
-      gap: 0.8rem;
-      background: linear-gradient(135deg, rgba(255,255,255,0.82), rgba(255,255,255,0.68));
-    }
-
-    .guide-list {
-      margin: 0;
-      padding-left: 1.1rem;
-      color: var(--sub);
-      display: grid;
-      gap: 0.45rem;
-      font-size: 0.95rem;
-    }
-
     .footer {
       padding: 2rem 0 4rem;
       color: var(--sub);
@@ -297,17 +274,8 @@
       flex-wrap: wrap;
     }
 
-    code.kbd {
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 0.88rem;
-      background: #efe7dd;
-      padding: 0.18rem 0.45rem;
-      border-radius: 6px;
-      color: #5b3a28;
-    }
-
     @media (max-width: 900px) {
-      .hero__grid, .cards, .two-col { grid-template-columns: 1fr; }
+      .hero__grid, .cards { grid-template-columns: 1fr; }
       .site-header__inner {
         min-height: auto;
         padding: 0.85rem 0;
@@ -327,7 +295,6 @@
         <a href="#latest-note">note最新記事</a>
         <a href="#works">代表記事</a>
         <a href="#about">プロフィール</a>
-        <a href="#guide">公開手順</a>
       </nav>
     </div>
   </header>
@@ -336,7 +303,7 @@
     <section class="hero">
       <div class="container hero__grid">
         <div class="hero__main">
-          <div class="eyebrow">Personal Literary Website</div>
+          <div class="eyebrow">Personal Website</div>
           <h1>文章をまとめています</h1>
           <p class="lead">
             文章を書く練習をするための拠点です。
@@ -368,7 +335,7 @@
       <div class="container">
         <div class="section-header">
           <div>
-            <div class="eyebrow">Latest from note</div>
+            <div class="eyebrow">Latest note</div>
             <h2>note 最新記事</h2>
           </div>
           <p><a href="https://note.com/adored__you7" target="_blank" rel="noopener noreferrer">note 全体を見る</a></p>
@@ -444,33 +411,22 @@
     </section>
 
     <section class="section" id="about">
-      <div class="container two-col">
+      <div class="container">
         <div class="about-box">
-          <div class="eyebrow">About</div>
+          <div class="eyebrow">About me</div>
           <h2>プロフィール</h2>
           <p>
-            大学院生。ロマンチストに憧れています。
+            東京大学で院生としてお勉強をしています。政令指定都市でもない地方に生まれました。
+            関心は表向きには教育に関わること、と言うことがありますが、本当はポルノやソシャゲなどにしか興味が持てません。
+            門地の制限上、努力に意味はありませんが、いつの日か子孫が東京ドリームを成し遂げてくれることを切に願っています。
           </p>
           <p>
-            noteとは別に拠点となる場所を持っていたら、格好がつくと思いました。まあ、noteなんですけどこれ。
+            (;o;)
           </p>
-        </div>
-
-        <div class="note-box">
-          <div class="eyebrow">note</div>
-          <h2>note への導線</h2>
-          <p>
-            最近は note をよく使っています。このサイトでは、そこにつながる入口としても機能させるつもりです。
-          </p>
-          <div class="hero-actions">
-            <a class="button" href="https://note.com/adored__you7" target="_blank" rel="noopener noreferrer">note トップ</a>
-            <a class="button button--ghost" href="https://note.com/adored__you7/rss" target="_blank" rel="noopener noreferrer">RSS を見る</a>
-          </div>
         </div>
       </div>
     </section>
-
-    <
+  </main>
 
   <footer class="footer">
     <div class="container footer-inner">
